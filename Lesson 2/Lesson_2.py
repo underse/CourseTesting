@@ -29,6 +29,13 @@ def task_2():
         my_list.insert(i+1, one)
     print(my_list)
 
+    """
+    Решение от преподавателя
+    """
+    # for i in range(1, len(my_list), 2):
+    #     my_list[i - 1], my_list[i] = my_list[i], my_list[i -1]
+    # print(my_list)
+
 
 def task_3():
     print_header(3)
@@ -57,10 +64,17 @@ def task_5():
     print('Текущий рейтинг: ', my_list)
 
     pos = 0
+    ins = False
+
     for el in my_list:
-        if new >= el:
+        if new > el:
             my_list.insert(pos, new)
             done = True
+            break
+        elif new == el:
+            ins = True
+        elif ins == True and new < el:
+            my_list.insert(pos, new)
             break
         pos += 1
 
@@ -141,12 +155,12 @@ def print_help():
 
 
 def main():
-    task_1()
-    task_2()
-    task_3()
-    task_4()
+    # task_1()
+    # task_2()
+    # task_3()
+    # task_4()
     task_5()
-    task_6()
+    # task_6()
 
 
 if __name__ == '__main__':
