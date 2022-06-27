@@ -155,12 +155,12 @@ def print_help():
 
 
 def main():
-    # task_1()
-    # task_2()
-    # task_3()
-    # task_4()
+    task_1()
+    task_2()
+    task_3()
+    task_4()
     task_5()
-    # task_6()
+    task_6()
 
 
 if __name__ == '__main__':
