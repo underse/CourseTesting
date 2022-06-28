@@ -9,7 +9,27 @@ Four — 4
 
 
 def main():
+    filename = 'Lesson_5_4.txt'
+    filename_out = 'Lesson_5_4_result.txt'
 
+    with open(filename, encoding='utf-8') as file:
+        file_out = open(filename_out, 'w+', encoding='utf-8')
+        for line in file:
+            print(line.rstrip())
+            num, digit = line.rstrip().split(' — ')
+            num = num.strip()
+            digit = digit.strip()
+            if num == 'One':
+                num = 'Один'
+            elif num == 'Two':
+                num = 'Два'
+            elif num == 'Three':
+                num = 'Три'
+            elif num == 'Four':
+                num = 'Четыре'
+            s = f'{num} — {digit}'
+            print(s)
+            file_out.write(s + '\n')
 
 
 if __name__ == '__main__':
