@@ -43,7 +43,16 @@ class Cell:
         return self.count // other.count
 
     def make_order(self, cr):
-        pass
+        print(f'\n{self.__class__.__name__}, количество ячеек в ряду: {cr}')
+        c = self.count // cr
+        ost = self.count % cr
+        s = ''
+        print(c, ost)
+        for i in range(c):
+            s = f'{s}\n{("*" * cr)}'
+        if ost > 0:
+            s = f'{s}\n{("*" * ost)}'
+        return s
 
 
 def main():
@@ -59,6 +68,9 @@ def main():
     print(f'\nУмножение: Cell({cell_1.count}) * Cell({cell_2.count}) = {cell_1 * cell_2}')
 
     print(f'\nДеление: Cell({cell_1.count}) // Cell({cell_2.count}) = {cell_1 // cell_2}')
+
+    print(f'{cell_1.make_order(9)}')
+    print(f'{cell_1.make_order(8)}')
 
 
 if __name__ == '__main__':
