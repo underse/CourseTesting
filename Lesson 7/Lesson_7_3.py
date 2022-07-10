@@ -24,25 +24,41 @@ class Cell:
     def __init__(self, count):
         try:
             self.count = int(count)
+            print(f'Создан класс {self.__class__.__name__} c {self.count} клетками.')
         except TypeError as e:
             print('Число клеток должно быть целым числом!')
             sys.exit(-1)
 
     def __add__(self, other):
-        pass
+        return self.count + other.count
 
     def __sub__(self, other):
-        return self.count - other.coun
+        res = self.count - other.count
+        return res if res > 0 else print('Вычитание невозможно. Разница меньше 0.')
 
     def __mul__(self, other):
-        pass
+        return self.count * other.count
 
-    def __truediv__(self, other):
+    def __floordiv__(self, other):
+        return self.count // other.count
+
+    def make_order(self, cr):
         pass
 
 
 def main():
-    cell = Cell(30)
+    cell_1 = Cell(45)
+
+    cell_2 = Cell(17)
+
+    print(f'\nСложение: Cell({cell_1.count}) + Cell({cell_2.count}) = {cell_1 + cell_2}\n')
+
+    print(f'Вычитание: Cell({cell_1.count}) - Cell({cell_2.count}) = {cell_1 - cell_2}')
+    print(f'\nВычитание: Cell({cell_2.count}) - Cell({cell_1.count}) = {cell_2 - cell_1}')
+
+    print(f'\nУмножение: Cell({cell_1.count}) * Cell({cell_2.count}) = {cell_1 * cell_2}')
+
+    print(f'\nДеление: Cell({cell_1.count}) // Cell({cell_2.count}) = {cell_1 // cell_2}')
 
 
 if __name__ == '__main__':
