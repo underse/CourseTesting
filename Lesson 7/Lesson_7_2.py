@@ -10,47 +10,54 @@
 Проверить на практике полученные на этом уроке знания: реализовать абстрактные классы для основных классов проекта, проверить на практике работу декоратора @property.
 """
 
+from abc import ABC, abstractmethod
 
-class Clothing:
+
+class Clothing(ABC):
     def __init__(self, name=''):
         self.name = name
         self.sum_consumption = 0
 
-    @property
+    @abstractmethod
     def fabric_consumption(self):
         pass
 
 
 class Suit(Clothing):
     def __init__(self, name, size):
-        self._size = size
+        self.size = size
         super().__init__(name)
 
+    @property
     def fabric_consumption(self):
-        return self._size / 6.5 + 0.5
+        return self.size / 6.5 + 0.5
 
 
 class Coat(Clothing):
     def __init__(self, name, height):
-        self._height = height / 100
+        self.height = height / 100
         super().__init__(name)
 
+    @property
     def fabric_consumption(self):
-        return 2 * self._height + 0.3
+        return 2 * self.height + 0.3
 
 
 def main():
     suit_1 = Suit('Пальто кашемировое', 50)
-    print(suit_1)
-    print(suit_1.name, suit_1._size)
-    print(f'Расход ткани на: {suit_1.name}, {suit_1._size} размера - {suit_1.fabric_consumption():.2f} метров.')
+    # print(suit_1)
+    print(suit_1.name, suit_1.size)
+    print(f'Расход ткани на: {suit_1.name}, {suit_1.size} размера - {suit_1.fabric_consumption:.2f} метров.')
+
+    print()
 
     coat = Coat('Костюм мужской с отливом', 188)
-    print(coat)
-    print(coat.name, coat._height)
-    print(f'Расход ткани на: {coat.name}, {coat._height} роста - {coat.fabric_consumption():.2f} метров.')
+    # print(coat)
+    print(coat.name, coat.height)
+    print(f'Расход ткани на: {coat.name}, {coat.height} роста - {coat.fabric_consumption:.2f} метров.')
 
-    print(f'Общий расход ткани: {(suit_1.fabric_consumption() + coat.fabric_consumption()):.2f} метров')
+    print(f'\nОбщий расход ткани: {(suit_1.fabric_consumption + coat.fabric_consumption):.2f} метров')
+
 
 if __name__ == '__main__':
     main()
