@@ -1,20 +1,51 @@
 """
-     Урок 8. 3. Создайте собственный класс-исключение, который должен проверять содержимое списка на наличие только чисел. Проверить работу исключения на реальном примере.
-     Запрашивать у пользователя данные и заполнять список необходимо только числами. Класс-исключение должен контролировать типы данных элементов списка.
-Примечание: длина списка не фиксирована. Элементы запрашиваются бесконечно, пока пользователь сам не остановит работу скрипта, введя, например, команду «stop».
-При этом скрипт завершается, сформированный список с числами выводится на экран.
-Подсказка: для этого задания примем, что пользователь может вводить только числа и строки.
-Во время ввода пользователем очередного элемента необходимо реализовать проверку типа элемента. Вносить его в список, только если введено число.
-Класс-исключение должен не позволить пользователю ввести текст (не число) и отобразить соответствующее сообщение. При этом работа скрипта не должна завершаться.
+     Урок 8. 4. Начните работу над проектом «Склад оргтехники». Создайте класс, описывающий склад.
+     А также класс «Оргтехника», который будет базовым для классов-наследников.
+     Эти классы — конкретные типы оргтехники (принтер, сканер, ксерокс).
+     В базовом классе определите параметры, общие для приведённых типов. В классах-наследниках реализуйте параметры, уникальные для каждого типа оргтехники.
 """
+
 
 # class MyError(Exception):
 #     def __init__(self, text):
 #         self.txt = text
 
 
-def main():
+class StorageEquipment:
+    def __init__(self, size, number_of_racks, location, count):
+        self.size = size
+        self.number_of_racks = number_of_racks
+        self.location = location
+        self.count = count
 
+
+class Equipment:
+    def __init__(self, mass, brand_name, interface, count):
+        self.mass = mass
+        self.brand_name = brand_name
+        self.interface = interface
+        self.count = count
+
+
+class Printer(Equipment):
+    def __init__(self, printer_type, mass, brand_name, interface, count):
+        # super().__init__(mass, brand_name, interface, count)
+        self.printer_type = printer_type
+
+
+class Scanner(Equipment):
+    def __init__(self, scanner_type, mass, brand_name, interface, count):
+        # super().__init__(mass, brand_name, interface, count)
+        self.scanner_type = scanner_type
+
+
+class Copier(Equipment):
+    def __init__(self, copies_per_minute):
+        self.copies_per_minute = copies_per_minute
+
+
+def main():
+    pass
 
 
 if __name__ == '__main__':

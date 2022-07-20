@@ -30,28 +30,33 @@ class Cell:
             sys.exit(-1)
 
     def __add__(self, other):
-        return self.count + other.count
+        return Cell(self.count + other.count)
+        # return self.count + other.count
 
     def __sub__(self, other):
-        res = self.count - other.count
-        return res if res > 0 else print('Вычитание невозможно. Разница меньше 0.')
+        print(f'Вычитание: Cell({self.count}) - Cell({other.count})')
+        if self.count - other.count < 0:
+            raise ValueError('!Вычитание невозможно. Разница меньше 0.')
+        return Cell(self.count - other.count)
 
     def __mul__(self, other):
-        return self.count * other.count
+        return Cell(self.count * other.count)
+        # return self.count * other.count
 
     def __floordiv__(self, other):
-        return self.count // other.count
+        return Cell(self.count // other.count)
+        # return self.count // other.count
 
     def make_order(self, cr):
         print(f'\n{self.__class__.__name__}, количество ячеек в ряду: {cr}')
         c = self.count // cr
-        ost = self.count % cr
+        remainder = self.count % cr
         s = ''
-        print(c, ost)
+        print(c, remainder)
         for i in range(c):
             s = f'{s}\n{("*" * cr)}'
-        if ost > 0:
-            s = f'{s}\n{("*" * ost)}'
+        if remainder > 0:
+            s = f'{s}\n{("*" * remainder)}'
         return s
 
 
@@ -60,14 +65,19 @@ def main():
 
     cell_2 = Cell(17)
 
-    print(f'\nСложение: Cell({cell_1.count}) + Cell({cell_2.count}) = {cell_1 + cell_2}\n')
+    print(f'\nСложение: Cell({cell_1.count}) + Cell({cell_2.count}) = {(cell_1 + cell_2).count}\n')
+    try:
+        print(f'Вычитание: Cell({cell_1.count}) - Cell({cell_2.count}) = {(cell_1 - cell_2).count}')
+    except ValueError as err:
+        print(err)
 
-    print(f'Вычитание: Cell({cell_1.count}) - Cell({cell_2.count}) = {cell_1 - cell_2}')
-    print(f'\nВычитание: Cell({cell_2.count}) - Cell({cell_1.count}) = {cell_2 - cell_1}')
+    try:
+        print(f'\nВычитание: Cell({cell_2.count}) - Cell({cell_1.count}) = {(cell_2 - cell_1).count}')
+    except ValueError as err:
+        print(err)
+    print(f'\nУмножение: Cell({cell_1.count}) * Cell({cell_2.count}) = {(cell_1 * cell_2).count}')
 
-    print(f'\nУмножение: Cell({cell_1.count}) * Cell({cell_2.count}) = {cell_1 * cell_2}')
-
-    print(f'\nДеление: Cell({cell_1.count}) // Cell({cell_2.count}) = {cell_1 // cell_2}')
+    print(f'\nДеление: Cell({cell_1.count}) // Cell({cell_2.count}) = {(cell_1 // cell_2).count}')
 
     print(f'{cell_1.make_order(9)}')
     print(f'{cell_1.make_order(8)}')
